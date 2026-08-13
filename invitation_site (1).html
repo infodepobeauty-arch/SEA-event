@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Приглашение на вечеринку</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo: #3B3F8C;
+    --indigo-deep: #23265E;
+    --sea-deep: #0E1D3D;
+    --sea-mid: #1E3A6B;
+    --sea-light: #4C6FA8;
+    --white: #FFFFFF;
+    --glare: #EAF1FF;
+    --sand: #F4F6FB;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html, body{ height:100%; }
+
+  body{
+    background: var(--sand);
+    color: var(--sea-deep);
+    font-family: 'Jost', sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding: 28px 16px;
+  }
+
+  .card{
+    width:100%;
+    max-width: 460px;
+    background: var(--white);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(14,29,61,0.35);
+  }
+
+  /* ---------- Морская сцена: видео-фон ---------- */
+  .scene{
+    position: relative;
+    line-height: 0;
+    background: var(--sea-deep);
+  }
+
+  .scene video{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  /* лёгкое затемнение поверх видео для читаемости текста */
+  .scene-overlay{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(180deg, rgba(14,29,61,0.35) 0%, rgba(14,29,61,0.15) 45%, rgba(14,29,61,0.55) 100%);
+    z-index: 1;
+  }
+
+  .eyebrow{
+    position:absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--glare);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+    z-index: 3;
+  }
+
+  /* ---------- Контент ---------- */
+  .content{
+    padding: 40px 40px 44px;
+    text-align:center;
+  }
+
+  h1{
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 1.28;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    text-shadow: 0 2px 10px rgba(59,63,140,0.25);
+    margin-bottom: 16px;
+  }
+
+  .lead{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #4B517A;
+    max-width: 340px;
+    margin: 0 auto 34px;
+  }
+
+  .divider{
+    width: 44px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sea-light), transparent);
+    margin: 0 auto 30px;
+  }
+
+  .details{
+    display:flex;
+    flex-direction:column;
+    gap: 13px;
+    margin-bottom: 38px;
+  }
+
+  .detail-row{
+    display:flex;
+    justify-content:center;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .detail-label{
+    color: var(--indigo);
+    min-width: 76px;
+    text-align:right;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(59,63,140,0.18);
+  }
+
+  .detail-value{
+    color: var(--sea-deep);
+    text-align:left;
+    font-weight: 500;
+  }
+
+  .rsvp{
+    display:inline-block;
+    padding: 15px 46px;
+    background: var(--indigo);
+    color: var(--white);
+    text-decoration:none;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 1px solid var(--indigo);
+    cursor: pointer;
+  }
+
+  .rsvp:hover{
+    background: var(--indigo-deep);
+    border-color: var(--indigo-deep);
+  }
+
+  .rsvp:focus-visible{
+    outline: 2px solid var(--sea-deep);
+    outline-offset: 3px;
+  }
+
+  .rsvp[data-state="confirmed"]{
+    background: var(--white);
+    color: var(--indigo);
+  }
+
+  .footnote{
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8A90B5;
+  }
+
+  @media (max-width: 480px){
+    .content{ padding: 34px 26px 38px; }
+    h1{ font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="card">
+
+    <div class="scene">
+      <video id="bgVideo" autoplay muted loop playsinline webkit-playsinline="true" preload="auto">
+        <source src="sea-video-2.mp4" type="video/mp4">
+      </video>
+      <div class="scene-overlay"></div>
+    </div>
+
+    <div class="content">
+      <h1>Соберёмся у&nbsp;моря</h1>
+
+      <p class="lead">
+        Ставим паруса вечером в субботу: солёный воздух, простая еда, музыка
+        и хорошая компания. Дресс-код — что-нибудь синее или белое.
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="details">
+        <div class="detail-row">
+          <span class="detail-label">Когда</span>
+          <span class="detail-value">Суббота, 22 августа, 18:00</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Где</span>
+          <span class="detail-value">Набережная, терраса «Маяк»</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Взять</span>
+          <span class="detail-value">Хорошее настроение</span>
+        </div>
+      </div>
+
+      <a class="rsvp" id="rsvpBtn" href="ССЫЛКА_НА_ЯНДЕКС_ФОРМУ" target="_blank" rel="noopener">Буду!</a>
+      <p class="footnote">Дай знать до четверга</p>
+    </div>
+
+  </main>
+
+  <script>
+    var bgVideo = document.getElementById('bgVideo');
+
+    function tryPlayVideo() {
+      if (!bgVideo) return;
+      bgVideo.muted = true;
+      bgVideo.defaultMuted = true;
+      var playPromise = bgVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function () {
+          // автозапуск заблокирован — попробуем ещё раз на след. событии
+        });
+      }
+    }
+
+    tryPlayVideo();
+    bgVideo && bgVideo.addEventListener('loadeddata', tryPlayVideo);
+    bgVideo && bgVideo.addEventListener('canplay', tryPlayVideo);
+    document.addEventListener('DOMContentLoaded', tryPlayVideo);
+    window.addEventListener('load', tryPlayVideo);
+    document.addEventListener('touchstart', tryPlayVideo, { once: true, passive: true });
+    document.addEventListener('click', tryPlayVideo, { once: true });
+  </script>
+
+</body>
+</html>
