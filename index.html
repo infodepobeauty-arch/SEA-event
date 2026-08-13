@@ -22,7 +22,22 @@
   *{ box-sizing: border-box; margin:0; padding:0; }
 
   html, body{ height:100%; }
+<script>
+  const video = document.getElementById('seaVideo');
 
+  video.muted = true;
+  video.setAttribute('muted', '');
+
+  function startVideo() {
+    video.play().catch(() => {});
+  }
+
+  window.addEventListener('load', startVideo);
+  document.addEventListener('DOMContentLoaded', startVideo);
+
+  video.addEventListener('canplay', startVideo);
+  video.addEventListener('loadeddata', startVideo);
+</script>
   body{
     background: var(--sand);
     color: var(--sea-deep);
@@ -188,17 +203,42 @@
   }
 </style>
 </head>
+  <script>
+  const video = document.getElementById('seaVideo');
+
+  video.muted = true;
+  video.setAttribute('muted', '');
+
+  function startVideo() {
+    video.play().catch(() => {});
+  }
+
+  window.addEventListener('load', startVideo);
+  document.addEventListener('DOMContentLoaded', startVideo);
+
+  video.addEventListener('canplay', startVideo);
+  video.addEventListener('loadeddata', startVideo);
+</script>
 <body>
 
   <main class="card">
 
     <div class="scene">
-      <video autoplay muted loop playsinline preload="auto">
+  <video
+    id="seaVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+  >
     <source src="sea-video.mp4" type="video/mp4">
-</video>
-      <div class="scene-overlay"></div>
-      <p class="eyebrow">Морская вечеринка</p>
-    </div>
+  </video>
+
+  <div class="scene-overlay"></div>
+  <p class="eyebrow">Морская вечеринка</p>
+</div>
 
     <div class="content">
       <h1>Соберёмся у&nbsp;моря</h1>
